@@ -1,7 +1,7 @@
 # free-apis
 please enjoy the free apis
 
-# [View Demo ![APIs Demo](https://github.com/maheshp212/free-apis/blob/master/demo.png "APIs Demo")](http://api.qshore.com/)
+# [![APIs Demo](https://github.com/maheshp212/free-apis/blob/master/demo.png "APIs Demo")](http://api.qshore.com/)
 
 # LIST USERS API
 **API URL:**   /users
