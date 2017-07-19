@@ -1,7 +1,7 @@
 # free-apis
 please enjoy the free apis
 
-# [View Demo ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")](http://api.qshore.com/)
+# [View Demo ![APIs Demo](https://github.com/maheshp212/free-apis/blob/master/demo.png "APIs Demo")](http://api.qshore.com/)
 
 # LIST USERS API
 **API URL:**   /users
