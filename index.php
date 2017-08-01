@@ -62,7 +62,10 @@ switch ($case) {
 function add_user() {
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		
-		if(count($_POST) != 5){
+		$post_vars = file_get_contents('php://input');
+		$request_params = (array)json_decode($post_vars);
+		
+		if(count($request_params) != 5){
 			$res = array(
 				'data'=> array(),
 				'msg' => 'we accept only 5 parameters, they are : `fname`, `lname`, `age`, `email`, `password` ',
@@ -73,7 +76,7 @@ function add_user() {
 		}
 
 		$list_keys = array('fname', 'lname', 'age', 'email', 'password');
-		foreach ($_POST as $key => $value) {
+		foreach ($request_params as $key => $value) {
 			if(!in_array($key, $list_keys)){
 				$res = array(
 					'data'=> array(),
@@ -86,7 +89,7 @@ function add_user() {
 		}
 
 		global $conn;
-		foreach ($_POST as $key => $value) {
+		foreach ($request_params as $key => $value) {
 			$$key = $value;
 		}
 
@@ -383,89 +386,89 @@ function reset_data(){
 	if($users_count > 50) {
 		$truncate_sql = "truncate table users";
 		$conn->query($truncate_sql);
-	}
-	
-	$input_arr = 
-	[
-		[
-			'fname'=> 'Mahesh',
-			'lname'=> 'Perla',
-			'age'=> '23',
-			'email'=> 'mahesh@gmail.com',
-			'password'=> 'mahesh213',
-		],
-		[
-			'fname'=> 'Ramesh',
-			'lname'=> 'Reddy',
-			'age'=> '2t',
-			'email'=> 'ramehs@gmail.com',
-			'password'=> 'ramehs143',
-		],
-		[
-			'fname'=> 'Krishan',
-			'lname'=> 'koundanyia',
-			'age'=> '20',
-			'email'=> 'kkr@gmail.com',
-			'password'=> 'kk3213',
-		],
-		[
-			'fname'=> 'Umang',
-			'lname'=> 'tripathi',
-			'age'=> '23',
-			'email'=> 'tumang@gmail.com',
-			'password'=> 'tumang3613',
-		],
-		[
-			'fname'=> 'Mukesh',
-			'lname'=> 'Ambani',
-			'age'=> '45',
-			'email'=> 'amaniM@gmail.com',
-			'password'=> 'amaniM213',
-		],
-		[
-			'fname'=> 'Kailesh',
-			'lname'=> 'yadav',
-			'age'=> '56',
-			'email'=> 'kailash@gmail.com',
-			'password'=> 'kailash@#',
-		],
-		[
-			'fname'=> 'Girish',
-			'lname'=> 'kulkarni',
-			'age'=> '92',
-			'email'=> 'giriesh@gmail.com',
-			'password'=> 'kulkarni098',
-		],
-		[
-			'fname'=> 'amit',
-			'lname'=> 'tripathi',
-			'age'=> '53',
-			'email'=> 'amit@gmail.com',
-			'password'=> 'amit12',
-		],
-		[
-			'fname'=> 'sandep',
-			'lname'=> 'boyina',
-			'age'=> '17',
-			'email'=> 'boyinaS@gmail.com',
-			'password'=> 'bbbs9643',
-		],
-		[
-			'fname'=> 'lalit',
-			'lname'=> 'kumar',
-			'age'=> '22',
-			'email'=> 'lalit@gmail.com',
-			'password'=> 'lalit45',
-		],
-	];
 
-	foreach ($input_arr as $user) {
-		foreach ($user as $key => $value) {
-			$$key = $value;
+		$input_arr = 
+		[
+			[
+				'fname'=> 'Mahesh',
+				'lname'=> 'Perla',
+				'age'=> '23',
+				'email'=> 'mahesh@gmail.com',
+				'password'=> 'mahesh213',
+			],
+			[
+				'fname'=> 'Ramesh',
+				'lname'=> 'Reddy',
+				'age'=> '2t',
+				'email'=> 'ramehs@gmail.com',
+				'password'=> 'ramehs143',
+			],
+			[
+				'fname'=> 'Krishan',
+				'lname'=> 'koundanyia',
+				'age'=> '20',
+				'email'=> 'kkr@gmail.com',
+				'password'=> 'kk3213',
+			],
+			[
+				'fname'=> 'Umang',
+				'lname'=> 'tripathi',
+				'age'=> '23',
+				'email'=> 'tumang@gmail.com',
+				'password'=> 'tumang3613',
+			],
+			[
+				'fname'=> 'Mukesh',
+				'lname'=> 'Ambani',
+				'age'=> '45',
+				'email'=> 'amaniM@gmail.com',
+				'password'=> 'amaniM213',
+			],
+			[
+				'fname'=> 'Kailesh',
+				'lname'=> 'yadav',
+				'age'=> '56',
+				'email'=> 'kailash@gmail.com',
+				'password'=> 'kailash@#',
+			],
+			[
+				'fname'=> 'Girish',
+				'lname'=> 'kulkarni',
+				'age'=> '92',
+				'email'=> 'giriesh@gmail.com',
+				'password'=> 'kulkarni098',
+			],
+			[
+				'fname'=> 'amit',
+				'lname'=> 'tripathi',
+				'age'=> '53',
+				'email'=> 'amit@gmail.com',
+				'password'=> 'amit12',
+			],
+			[
+				'fname'=> 'sandep',
+				'lname'=> 'boyina',
+				'age'=> '17',
+				'email'=> 'boyinaS@gmail.com',
+				'password'=> 'bbbs9643',
+			],
+			[
+				'fname'=> 'lalit',
+				'lname'=> 'kumar',
+				'age'=> '22',
+				'email'=> 'lalit@gmail.com',
+				'password'=> 'lalit45',
+			],
+		];
+
+		foreach ($input_arr as $user) {
+			foreach ($user as $key => $value) {
+				$$key = $value;
+			}
+			$insert_query = "insert into users(`fname`, `lname`, `age`, `email`, `password`) VALUES ('$fname', '$lname', '$age', '$email', '$password');";
+
+			$conn->query($insert_query);
 		}
-		$insert_query = "insert into users(`fname`, `lname`, `age`, `email`, `password`) VALUES ('$fname', '$lname', '$age', '$email', '$password');";
-
-		$conn->query($insert_query);
 	}
 
 	return true;
